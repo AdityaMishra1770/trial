@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resume Builder</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+            color: #495057;
+            transition: background-color 0.5s ease-in-out;
+        }
+
+        header {
+            background-color: #343a40;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        main {
+            margin: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        section {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        section:hover {
+            transform: scale(1.02);
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+            color: #343a40;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input {
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            margin-top: 5px;
+            font-size: 16px;
+            width: 100%;
+            transition: border-color 0.3s ease-in-out;
+        }
+
+        input:focus {
+            border-color: #007bff;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        #resume-output {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 600px;
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            section {
+                margin: 0;
+            }
+
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Resume Builder</h1>
+    </header>
+
+    <main>
+        <section id="personal-info">
+            <h2>Personal Information</h2>
+            <form id="personal-info-form">
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email:</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="phone">Phone:</label>
+                    <input type="tel" id="phone" name="phone" required>
+                </div>
+            </form>
+        </section>
+
+        <section id="experience">
+            <h2>Work Experience</h2>
+            <form class="experience-form">
+                <div class="form-group">
+                    <label for="job-title">Job Title:</label>
+                    <input type="text" id="job-title" name="job-title" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="company">Company:</label>
+                    <input type="text" id="company" name="company" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="years">Years of Experience:</label>
+                    <input type="number" id="years" name="years" required>
+                </div>
+            </form>
+        </section>
+    </main>
+
+    <footer>
+        <button onclick="generateResume()">Generate Resume</button>
+        <div id="resume-output"></div>
+    </footer>
+
+    <script>
+        function generateResume() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+            const jobTitle = document.getElementById('job-title').value;
+            const company = document.getElementById('company').value;
+            const years = document.getElementById('years').value;
+
+            const resumeOutput = document.getElementById('resume-output');
+            resumeOutput.innerHTML = `
+                <h2>Generated Resume</h2>
+                <p><strong>Name:</strong> ${name}</p>
+                <p><strong>Email:</strong> ${email}</p>
+                <p><strong>Phone:</strong> ${phone}</p>
+                <h3>Work Experience</h3>
+                <p><strong>Job Title:</strong> ${jobTitle}</p>
+                <p><strong>Company:</strong> ${company}</p>
+                <p><strong>Years of Experience:</strong> ${years}</p>
+            `;
+
+            resumeOutput.style.display = 'block';
+        }
+    </script>
+</body>
+</html>
